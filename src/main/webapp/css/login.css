@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.content form {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background: #dddddd;
+    border: 3px inset #f1f1f1;
+    padding: 20px 30px 30px 20px;
+}
+
+.content form p {
+    padding-left: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.content form input[type=text], input[type=password] {
+    display: flex;
+    padding: 12px 20px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width: 90%;
+}
+
+.content input[type=submit] {
+    display: flex;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    font-size: 20px;
+}
+
+.content input[type="submit"]:hover {
+    background-color: #367c39;
+    color: black;
+}
+
+.errorMessage {
+    display: flex;
+    padding-left: 20px;
+    font-size: 20px;
+    color: red;
+}
+
+@media screen and (max-width: 768px) {
+    .loginForm {
+        width: auto;
+        padding: 10px 10px 10px 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+        .loginForm {
+            width: auto;
+            padding: 10px 10px 10px 10px;
+        }
+    }
+}
+
