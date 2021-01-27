@@ -1,0 +1,19 @@
+* {
+    box-sizing: border-box;
+}
+
+.left-pane input[type=submit]  {
+     width: 90%;
+    background-color:#33b5e5;
+    color: white;
+    padding: 10px 10px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+     text-align: center;
+    font-size: 20px;
+     font-family: "Lucida Sans", sans-serif;;
+}
+.left-pane  input:hover[type="submit"]{
+    background-color:#1a9ccb;
+}

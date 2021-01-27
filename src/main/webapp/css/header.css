@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Lucida Sans", sans-serif;
+    font-size: 20px;
+}
+
+.topnav {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #9933cc;
+    color: #ffffff;
+    margin: 15px;
+
+}
+
+.topnav a {
+    display: flex;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: inherit;
+    color: inherit;
+}
+
+.topnav a:hover {
+    background-color: #7a29a3;
+}
+
+.topnavhref {
+    background-color: inherit;
+    display: flex;
+    flex: 50%
+}
+
+.log-container {
+    display: flex;
+}
+
+.log-container input[type=submit] {
+    font-size: inherit;
+    border: none;
+    outline: none;
+    padding: 14px 16px;
+    background-color: #9933cc;
+    color: inherit;
+}
+
+
+.log-container input[type=submit]:hover {
+    background-color: #7a29a3;
+    color: inherit;
+}
+
+
+@media screen and (max-width: 768px) {
+    .topnavhref, .log-container {
+        flex-direction: column;
+    }
+
+    .log-container, .dropdown {
+        flex: 100%;
+    }
+
+    @media screen and (max-width: 600px) {
+        .topnavhref, .log-container {
+            flex-direction: column;
+        }
+
+        .log-container, .dropdown {
+            flex: 100%
+        }
+    }
+}
