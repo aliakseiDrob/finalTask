@@ -44,11 +44,4 @@ public class CommandResult {
         return Objects.hash(page, isRedirect);
     }
 
-    @Override
-    public String toString() {
-        return "CommandResult{" +
-                "page='" + page + '\'' +
-                ", isRedirect=" + isRedirect +
-                '}';
-    }
 }

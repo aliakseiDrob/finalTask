@@ -23,7 +23,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             ApplicationDao dao = daoHelper.createApplicationDao();
             Optional<Application> optionalApplication = dao.findById(id);
-            return optionalApplication.orElseThrow(()->new ServicesException("application with id=" + id + "doesn't exist"));
+            return optionalApplication.orElseThrow(() -> new ServicesException("application with id=" + id + "doesn't exist"));
         } catch (DaoException | SQLException e) {
             throw new ServicesException(e);
         }
@@ -79,7 +79,7 @@ public class ApplicationServiceImpl implements ApplicationService {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             ApplicationDao dao = daoHelper.createApplicationDao();
             int begin = (page - 1) * itemsPerPage;
-            return dao.findPaginatePageInProgress(itemsPerPage, begin);  //TODO
+            return dao.findPaginatePageInProgress(itemsPerPage, begin);
         } catch (DaoException | SQLException e) {
             throw new ServicesException(e);
         }

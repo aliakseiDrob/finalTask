@@ -4,7 +4,6 @@ import com.epam.hotel.command.Command;
 import com.epam.hotel.command.CommandResult;
 import com.epam.hotel.entity.Application;
 import com.epam.hotel.exception.ServicesException;
-import com.epam.hotel.logic.service.ApplicationServiceImpl;
 import com.epam.hotel.logic.service.api.ApplicationService;
 
 import javax.servlet.http.HttpServletRequest;

@@ -5,6 +5,7 @@ import com.epam.hotel.entity.enums.RoomType;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class ApplicationDto implements Identifier {
     private Long id;
@@ -24,6 +25,7 @@ public class ApplicationDto implements Identifier {
         this.invoice = invoice;
         this.roomNumber = roomNumber;
     }
+
     @Override
     public Long getId() {
         return id;
@@ -32,6 +34,7 @@ public class ApplicationDto implements Identifier {
     public void setId(Long id) {
         this.id = id;
     }
+
     public LocalDate getDateCheckIn() {
         return dateCheckIn;
     }
@@ -80,4 +83,20 @@ public class ApplicationDto implements Identifier {
         this.roomNumber = roomNumber;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ApplicationDto that = (ApplicationDto) o;
+        return capacity == that.capacity && roomNumber == that.roomNumber && Objects.equals(id, that.id) && Objects.equals(dateCheckIn, that.dateCheckIn) && Objects.equals(dateCheckOut, that.dateCheckOut) && type == that.type && Objects.equals(invoice, that.invoice);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, dateCheckIn, dateCheckOut, type, capacity, invoice, roomNumber);
+    }
 }

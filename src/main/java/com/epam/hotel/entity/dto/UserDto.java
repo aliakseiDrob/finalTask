@@ -4,6 +4,8 @@ import com.epam.hotel.entity.Identifier;
 import com.epam.hotel.entity.enums.UserRole;
 import com.epam.hotel.entity.enums.UserStatus;
 
+import java.util.Objects;
+
 public class UserDto implements Identifier {
     private Long id;
     private String login;
@@ -48,5 +50,22 @@ public class UserDto implements Identifier {
 
     public void setStatus(UserStatus status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        UserDto userDto = (UserDto) o;
+        return Objects.equals(id, userDto.id) && Objects.equals(login, userDto.login) && role == userDto.role && status == userDto.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, role, status);
     }
 }

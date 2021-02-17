@@ -1,6 +1,5 @@
 package com.epam.hotel.logic.service;
 
-
 import com.epam.hotel.dao.DaoHelper;
 import com.epam.hotel.dao.DaoHelperFactory;
 import com.epam.hotel.dao.api.ApplicationDao;
@@ -22,6 +21,8 @@ import java.util.Optional;
 public class RoomServiceImpl implements RoomService {
     private static final int ONE_DAY_TO_ADD = 1;
     private static final int ONE_YEAR_TO_ADD = 365;
+    private static final long ROOM_ID = 0L;
+    private static final String PRICE_VALUE = "0";
     private final DaoHelperFactory daoHelperFactory;
 
     public RoomServiceImpl(DaoHelperFactory daoHelperFactory) {
@@ -44,7 +45,7 @@ public class RoomServiceImpl implements RoomService {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             RoomDao dao = daoHelper.createRoomDao();
             Optional<Room> optionalRoom = dao.findById(id);
-            Room room = optionalRoom.orElseThrow(()-> new ServicesException("Room with " + id + " doesn't exist"));
+            Room room = optionalRoom.orElseThrow(() -> new ServicesException("Room with " + id + " doesn't exist"));
 
             RoomStatus actualStatus = room.getStatus();
             String status = actualStatus.toString();
@@ -69,11 +70,11 @@ public class RoomServiceImpl implements RoomService {
             Long id = room.getId();
             LocalDate beginDate = LocalDate.now().plusDays(ONE_DAY_TO_ADD);
             LocalDate endDate = beginDate.plusDays(ONE_YEAR_TO_ADD);
-            List<Application> applicationList = applicationDao.findAllByRoomIdAndTimePeriod(id,beginDate,endDate);
-            for (Application application: applicationList) {
+            List<Application> applicationList = applicationDao.findAllByRoomIdAndTimePeriod(id, beginDate, endDate);
+            for (Application application : applicationList) {
                 application.setStatus(ApplicationStatus.IN_PROGRESS);
-                application.setRoomId(0L);
-                application.setInvoice(new BigDecimal("0"));
+                application.setRoomId(ROOM_ID);
+                application.setInvoice(new BigDecimal(PRICE_VALUE));
                 applicationDao.save(application);
             }
             daoHelper.commitTransaction();
@@ -98,7 +99,7 @@ public class RoomServiceImpl implements RoomService {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             RoomDao dao = daoHelper.createRoomDao();
             Optional<Room> optionalRoom = dao.findById(id);
-            return optionalRoom.orElseThrow(()-> new ServicesException("Room with " + id + " doesn't exist"));
+            return optionalRoom.orElseThrow(() -> new ServicesException("Room with " + id + " doesn't exist"));
         } catch (DaoException | SQLException e) {
             throw new ServicesException(e);
         }

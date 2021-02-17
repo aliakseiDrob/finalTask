@@ -3,11 +3,9 @@ package com.epam.hotel.dao.api;
 import com.epam.hotel.entity.Identifier;
 import com.epam.hotel.exception.DaoException;
 
-import java.sql.SQLException;
-import java.util.List;
 import java.util.Optional;
 
-public interface PersistentDao <T extends Identifier> extends Dao<T> {
+public interface PersistentDao<T extends Identifier> extends Dao<T> {
     /**
      * This method is used for saving and updating Entity objects in the data source
      *
@@ -15,6 +13,7 @@ public interface PersistentDao <T extends Identifier> extends Dao<T> {
      * @throws DaoException in case of errors
      */
     void save(T item) throws DaoException;
+
     /**
      * This method is used for deleting Entity objects in the data source
      *
@@ -22,6 +21,7 @@ public interface PersistentDao <T extends Identifier> extends Dao<T> {
      * @throws DaoException in case of errors
      */
     void removeById(Long id) throws DaoException;
+
     /**
      * This method finds Entity object in the data source by id
      *

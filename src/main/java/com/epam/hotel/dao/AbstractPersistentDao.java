@@ -24,7 +24,7 @@ public abstract class AbstractPersistentDao<T extends Identifier> extends Abstra
 
     public AbstractPersistentDao(Connection connection, RowMapper<T> rowMapper, Parser<T> parser, String tableName, QueryCreator queryCreator) {
         super(connection, rowMapper);
-        this.table =tableName;
+        this.table = tableName;
         this.parser = parser;
         this.queryCreator = queryCreator;
     }
@@ -44,9 +44,9 @@ public abstract class AbstractPersistentDao<T extends Identifier> extends Abstra
             fieldsList.remove(0);
             fieldsList.add(itemId);
         }
-        Object[]  fieldsArray = fieldsList.toArray();
+        Object[] fieldsArray = fieldsList.toArray();
         try {
-        PreparedStatement preparedStatement = createStatement(query, fieldsArray);
+            PreparedStatement preparedStatement = createStatement(query, fieldsArray);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e);
@@ -56,7 +56,7 @@ public abstract class AbstractPersistentDao<T extends Identifier> extends Abstra
     @Override
     public void removeById(Long id) throws DaoException {
         try {
-        PreparedStatement preparedStatement = createStatement(DELETE_FROM + table + WHERE_ID, id);
+            PreparedStatement preparedStatement = createStatement(DELETE_FROM + table + WHERE_ID, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e);

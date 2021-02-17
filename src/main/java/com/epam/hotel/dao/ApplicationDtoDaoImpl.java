@@ -5,7 +5,6 @@ import com.epam.hotel.entity.dto.ApplicationDto;
 import com.epam.hotel.exception.DaoException;
 import com.epam.hotel.dao.mapper.RowMapper;
 
-
 import java.sql.Connection;
 import java.util.List;
 import java.util.Optional;

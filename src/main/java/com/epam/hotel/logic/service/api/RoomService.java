@@ -1,7 +1,6 @@
 package com.epam.hotel.logic.service.api;
 
 import com.epam.hotel.entity.Room;
-import com.epam.hotel.exception.DaoException;
 import com.epam.hotel.exception.ServicesException;
 
 import java.time.LocalDate;

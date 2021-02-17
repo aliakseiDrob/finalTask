@@ -9,7 +9,6 @@ import java.time.format.DateTimeParseException;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public class ApplicationValidatorImpl implements ApplicationValidator {
-    private final static LocalDate TODAY = LocalDate.now();              // TODO not static
     private static final int MAX_CAPACITY = 4;
     private static final int MIN_CAPACITY = 1;
     private static final int ONE_YEAR_IN_DAYS = 366;
@@ -19,16 +18,17 @@ public class ApplicationValidatorImpl implements ApplicationValidator {
 
     @Override
     public boolean isValidDateCheckIn(String dateCheckIn) {
+        LocalDate today = LocalDate.now();
         LocalDate checkInDate;
         if (dateCheckIn == null || EMPTY_STRING.equals(dateCheckIn.trim())) {
             return false;
         }
         try {
-            checkInDate = LocalDate.parse(dateCheckIn);             // TODO
+            checkInDate = LocalDate.parse(dateCheckIn);
         } catch (DateTimeParseException e) {
             return false;
         }
-        long daysBetween = DAYS.between(TODAY, checkInDate);
+        long daysBetween = DAYS.between(today, checkInDate);
         return (daysBetween > NULL_INT_VALUE && daysBetween < ONE_YEAR_IN_DAYS);
     }
 

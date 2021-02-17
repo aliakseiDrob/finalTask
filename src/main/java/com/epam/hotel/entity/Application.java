@@ -4,7 +4,6 @@ import com.epam.hotel.entity.enums.ApplicationStatus;
 import com.epam.hotel.entity.enums.RoomType;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -106,8 +105,12 @@ public class Application implements Identifier {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Application that = (Application) o;
         return capacity == that.capacity && Objects.equals(id, that.id) && Objects.equals(dateCheckIn, that.dateCheckIn) && Objects.equals(dateCheckOut, that.dateCheckOut) && type == that.type && status == that.status && Objects.equals(userId, that.userId) && Objects.equals(roomId, that.roomId) && Objects.equals(invoice, that.invoice);
     }
@@ -117,18 +120,4 @@ public class Application implements Identifier {
         return Objects.hash(id, dateCheckIn, dateCheckOut, type, capacity, status, userId, roomId, invoice);
     }
 
-    @Override
-    public String toString() {
-        return "Application{" +
-                "id=" + id +
-                ", dateCheckIn=" + dateCheckIn +
-                ", dateCheckOut=" + dateCheckOut +
-                ", type=" + type +
-                ", capacity=" + capacity +
-                ", status=" + status +
-                ", userId=" + userId +
-                ", roomId=" + roomId +
-                ", invoice=" + invoice +
-                '}';
-    }
 }

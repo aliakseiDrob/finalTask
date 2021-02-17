@@ -9,9 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import com.epam.hotel.connection.ConnectionPool;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -55,5 +55,16 @@ public class Controller extends HttpServlet {
     private void forwardPage(String page, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher(page);
         dispatcher.forward(request, response);
+    }
+
+    @Override
+    public void destroy() {
+        try {
+            ConnectionPool connectionPool = ConnectionPool.getInstance();
+            connectionPool.closeAllConnections();
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage(), e);
+        }
+        super.destroy();
     }
 }

@@ -27,11 +27,11 @@ public class ApplicationRoomServiceImpl implements ApplicationRoomService {
             RoomDao roomDao = daoHelper.createRoomDao();
             ApplicationDao applicationDao = daoHelper.createApplicationDao();
             Optional<Room> optionalRoom = roomDao.findById(roomId);
-            Room room = optionalRoom.orElseThrow(()->new ServicesException("room with id=" + roomId + "doesn't exist")); //TODO
+            Room room = optionalRoom.orElseThrow(() -> new ServicesException("room with id=" + roomId + "doesn't exist"));
 
             BigDecimal priceRoom = room.getPrice();
             Optional<Application> optionalApplication = applicationDao.findById(applicationId);
-            Application application = optionalApplication.orElseThrow(()->new ServicesException("application with id=" + applicationId + "doesn't exist"));
+            Application application = optionalApplication.orElseThrow(() -> new ServicesException("application with id=" + applicationId + "doesn't exist"));
 
             int differenceDate = applicationDao.differenceBetweenDate(applicationId);
             BigDecimal totalPrice = priceRoom.multiply(new BigDecimal(differenceDate));

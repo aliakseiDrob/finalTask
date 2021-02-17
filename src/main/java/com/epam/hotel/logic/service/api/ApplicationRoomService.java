@@ -1,6 +1,5 @@
 package com.epam.hotel.logic.service.api;
 
-import com.epam.hotel.exception.DaoException;
 import com.epam.hotel.exception.ServicesException;
 
 /**
@@ -12,7 +11,7 @@ public interface ApplicationRoomService {
      *
      * @param roomId        room id
      * @param applicationId application id
-     * @throws DaoException in case of errors
+     * @throws ServicesException in case of errors
      */
     void createInvoice(Long roomId, Long applicationId) throws ServicesException;
 }

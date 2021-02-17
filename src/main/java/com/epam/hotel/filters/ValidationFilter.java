@@ -21,7 +21,7 @@ public class ValidationFilter implements Filter {
     public void init(FilterConfig filterConfig) {
         adminCommand = Arrays.asList("inProgressApplication", "addRoom", "blockUnBlockUser", "blockUnblockRoom", "deleteUser",
                 "availableRooms", "addInvoice", "editRoomPage", "editRoom", "allRooms", "allUsers", "addRoomPage");
-        guestCommand = Arrays.asList("booking", "applicationHistory", "bookingPage","guestInvoices","guestInvoicesPage");
+        guestCommand = Arrays.asList("booking", "applicationHistory", "bookingPage", "guestInvoices", "guestInvoicesPage");
     }
 
     @Override

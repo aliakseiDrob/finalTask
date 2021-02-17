@@ -25,7 +25,7 @@ public class EditRoomPageCommand implements Command {
         String roomId = request.getParameter(PARAMETER_ROOM_ID);
         Long id = Long.parseLong(roomId);
         Room room = roomService.findById(id);
-        request.setAttribute(PARAMETER_ROOM,room);
+        request.setAttribute(PARAMETER_ROOM, room);
         return CommandResult.forward(EDIT_ROOM_PAGE);
     }
 }

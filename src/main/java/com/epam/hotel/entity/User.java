@@ -78,14 +78,4 @@ public class User implements Identifier {
         return Objects.hash(id, login, password, role, status);
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
-                ", status=" + status +
-                '}';
-    }
 }

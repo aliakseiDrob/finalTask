@@ -38,7 +38,7 @@ public class CommandFactory {
     public static Command create(String command) {
         switch (command) {
             case LOGIN_COMMAND:
-                return new LoginCommand(new UserServiceImpl(new DaoHelperFactory()),new UserValidator());
+                return new LoginCommand(new UserServiceImpl(new DaoHelperFactory()), new UserValidator());
             case LOGOUT_COMMAND:
                 return new LogOutCommand();
             case BOOKING_COMMAND:
@@ -48,7 +48,7 @@ public class CommandFactory {
             case GUEST_INVOICES_COMMAND:
                 return new GuestInvoicesCommand(new ApplicationDtoServiceImpl(new DaoHelperFactory()));
             case ADD_ROOM_COMMAND:
-                return new AddRoomCommand(new RoomServiceImpl(new DaoHelperFactory()),new RoomValidatorImpl());
+                return new AddRoomCommand(new RoomServiceImpl(new DaoHelperFactory()), new RoomValidatorImpl());
             case BLOCK_UNBLOCK_USER_COMMAND:
                 return new BlockUnblockUserCommand(new UserServiceImpl(new DaoHelperFactory()));
             case BLOCK_UNBLOCK_ROOM_COMMAND:
@@ -62,7 +62,7 @@ public class CommandFactory {
             case EDIT_ROOM_PAGE_COMMAND:
                 return new EditRoomPageCommand(new RoomServiceImpl(new DaoHelperFactory()));
             case EDIT_ROOM_COMMAND:
-                return new EditRoomCommand(new RoomServiceImpl(new DaoHelperFactory()),new RoomValidatorImpl());
+                return new EditRoomCommand(new RoomServiceImpl(new DaoHelperFactory()), new RoomValidatorImpl());
 
             case IN_PROGRESS_APPLICATION_COMMAND:
                 return new InProgressApplicationsCommand(new ApplicationServiceImpl(new DaoHelperFactory()));

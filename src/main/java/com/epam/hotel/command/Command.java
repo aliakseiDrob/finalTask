@@ -4,6 +4,7 @@ import com.epam.hotel.exception.ServicesException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 /**
  * The interface describes any action performed on the server side of the application.
  */

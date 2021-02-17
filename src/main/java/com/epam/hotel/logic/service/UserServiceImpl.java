@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserServiceImpl implements UserService {
+    private static final long ROOM_ID = 0L;
+    private static final String PRCE_VAKUE = "0";
     private final DaoHelperFactory daoHelperFactory;
 
     public UserServiceImpl(DaoHelperFactory daoHelperFactory) {
@@ -41,13 +43,12 @@ public class UserServiceImpl implements UserService {
         try (DaoHelper daoHelper = daoHelperFactory.create()) {
             UserDao dao = daoHelper.createUserDao();
             Optional<User> optionalUser = dao.findById(userId);
-            User user = optionalUser.orElseThrow(()->new ServicesException("user with id=" + userId + " doesn't exist"));
+            User user = optionalUser.orElseThrow(() -> new ServicesException("user with id=" + userId + " doesn't exist"));
             UserStatus status = user.getStatus();
-            String userStatus = status.toString();
-            if (userStatus.equals("ACTIVE")) {
+            if (status.equals(UserStatus.ACTIVE)) {
                 user.setStatus(UserStatus.BLOCKED);
             }
-            if (userStatus.equals("BLOCKED")) {
+            if (status.equals(UserStatus.BLOCKED)) {
                 user.setStatus(UserStatus.ACTIVE);
             }
             dao.save(user);
@@ -62,17 +63,17 @@ public class UserServiceImpl implements UserService {
             UserDao userDao = daoHelper.createUserDao();
             ApplicationDao applicationDao = daoHelper.createApplicationDao();
             Optional<User> optionalUser = userDao.findById(userId);
-            User user = optionalUser.orElseThrow(()->new ServicesException("user with id=" + userId + " doesn't exist"));
+            User user = optionalUser.orElseThrow(() -> new ServicesException("user with id=" + userId + " doesn't exist"));
             daoHelper.startTransaction();
             user.setStatus(UserStatus.DELETED);
             userDao.save(user);
             LocalDate beginDate = LocalDate.now().plusDays(1);
 
-            List<Application> applicationList = applicationDao.findAllByUserIdAndTimePeriod(userId,beginDate);
+            List<Application> applicationList = applicationDao.findAllByUserIdAndTimePeriod(userId, beginDate);
             for (Application application : applicationList) {
                 application.setStatus(ApplicationStatus.REJECTED);
-                application.setRoomId(0L);
-                application.setInvoice(new BigDecimal(0));
+                application.setRoomId(ROOM_ID);
+                application.setInvoice(new BigDecimal(PRCE_VAKUE));
                 applicationDao.save(application);
             }
             daoHelper.commitTransaction();

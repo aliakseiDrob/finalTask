@@ -12,37 +12,39 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ConnectionPool {
-    private ConnectionFactory connectionFactory;
-    private static ConnectionPool instance = null;
-    private static final AtomicBoolean initStarted = new AtomicBoolean(false);
+    private final ConnectionFactory connectionFactory;
+    private static ConnectionPool instance;
+    private static final AtomicBoolean initStarted = new AtomicBoolean(true);
     private final Queue<ProxyConnection> availableConnections;
     private final Queue<ProxyConnection> connectionsInUse;
     private static final ReentrantLock CONNECTIONS_LOCKER = new ReentrantLock();
     private static final ReentrantLock INSTANCE_LOCKER = new ReentrantLock();
-    private final Semaphore semaphore = new Semaphore(POOL_SIZE, true);
     private static final int POOL_SIZE = 10;
+    private final Semaphore semaphore = new Semaphore(POOL_SIZE, true);
+
 
     private ConnectionPool() {
         if (instance != null) {
             throw new ConnectionPoolException("Only one instance is allowed for ConnectionPool class");
         }
-        availableConnections = new ArrayDeque<>();
-        connectionsInUse = new ArrayDeque<>();
+        this.availableConnections = new ArrayDeque<>();
+        this.connectionsInUse = new ArrayDeque<>();
+        this.connectionFactory = new ConnectionFactory();
         for (int i = 0; i < POOL_SIZE; i++) {
-            connectionFactory = new ConnectionFactory();
             Connection connection = connectionFactory.create();
             ProxyConnection proxyConnection = new ProxyConnection(connection, this);
             availableConnections.add(proxyConnection);
         }
     }
 
-    public static ConnectionPool getInstance() {        // TODO improve
-        ConnectionPool localInstance = instance;
-        if (!initStarted.get()) {
+    public static ConnectionPool getInstance() {
+        if (initStarted.get()) {
             INSTANCE_LOCKER.lock();
+            ConnectionPool localInstance;
             try {
-                if (!initStarted.getAndSet(true)) {
-                    instance = new ConnectionPool();
+                if (initStarted.getAndSet(false)) {
+                    localInstance = new ConnectionPool();
+                    instance = localInstance;
                 }
             } finally {
                 INSTANCE_LOCKER.unlock();
@@ -73,7 +75,7 @@ public class ConnectionPool {
             connectionsInUse.offer(proxyConnection);
             return proxyConnection;
         } catch (InterruptedException e) {
-            throw new DaoException(e);
+            throw new ConnectionPoolException(e);
         } finally {
             CONNECTIONS_LOCKER.unlock();
         }

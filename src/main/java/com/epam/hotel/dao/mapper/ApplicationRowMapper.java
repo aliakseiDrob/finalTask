@@ -25,7 +25,7 @@ public class ApplicationRowMapper implements RowMapper<Application> {
     public Application map(ResultSet resultSet) throws SQLException {
         Long id = resultSet.getLong(ID);
         LocalDate checkIn = resultSet.getObject(CHECK_IN_DATE, LocalDate.class);
-        LocalDate checkOut = resultSet.getObject(CHECK_OUT_DATE,LocalDate.class);
+        LocalDate checkOut = resultSet.getObject(CHECK_OUT_DATE, LocalDate.class);
         String roomTypeValue = resultSet.getString(ROOM_TYPE);
         RoomType roomType = RoomType.valueOf(roomTypeValue);
         byte capacity = resultSet.getByte(CAPACITY);

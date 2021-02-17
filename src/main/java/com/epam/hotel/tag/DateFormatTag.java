@@ -1,11 +1,9 @@
 package com.epam.hotel.tag;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -26,7 +24,7 @@ public class DateFormatTag extends TagSupport {
     }
 
     @Override
-    public int doStartTag() {
+    public int doStartTag() throws JspException {
         if (LOCALE_ENG.equals(locale)) {
             formattedDate = date.format(DateTimeFormatter.ofPattern(dateFormatEng));
         } else {
@@ -36,7 +34,7 @@ public class DateFormatTag extends TagSupport {
         try {
             out.write(formattedDate);
         } catch (IOException e) {
-            e.printStackTrace();   //TODO improve log or throw
+            throw new JspException(e.getMessage(), e);
         }
         return SKIP_BODY;
     }

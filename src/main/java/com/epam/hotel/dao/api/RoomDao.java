@@ -4,7 +4,6 @@ import com.epam.hotel.entity.Room;
 import com.epam.hotel.exception.DaoException;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 /**
