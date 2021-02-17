@@ -1,0 +1,102 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.main form {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background: #dddddd;
+    padding: 20px 30px 30px 20px;
+}
+
+.main form p {
+    margin-top: 15px;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.main form input[type=number] .main form input[type=date] {
+    display: flex;
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width: 200px;
+}
+
+.main form input[type=submit] {
+    display: flex;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    width: 140px;
+    font-size: 20px;
+
+}
+
+.main form input[type=submit]:hover {
+    background-color: #3e8e41;
+    color: black;
+}
+
+
+.select-wrapper #content {
+    font-size: 17px;
+    width: 200px;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px dotted gray;
+}
+
+.select-wrapper {
+    background: white;
+    color: #111111;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.select-wrapper select {
+    font-size: 17px;
+    width: 200px;
+    height: 28px;
+    padding: 0 20px 0 7px;
+    background: white;
+    border: 0;
+}
+
+.warnCheck_in {
+    font-size: 14px;
+    color: red;
+}
+
+.warnCheck_out {
+    font-size: 14px;
+    color: red;
+}
+
+.errorMessage {
+    display: flex;
+    padding-left: 20px;
+    font-size: 20px;
+    color: red;
+}
+
+@media screen and (max-width: 768px) {
+    .main form {
+        width: auto;
+        padding: 10px 10px 10px 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+        .main form {
+            width: auto;
+            padding: 10px 10px 10px 10px;
+        }
+    }
+}

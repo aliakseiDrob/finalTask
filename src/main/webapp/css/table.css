@@ -1,0 +1,44 @@
+* {
+    box-sizing: border-box;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 15px;
+}
+.pagination a {
+    color: black;
+    float: left;
+    padding: 16px 16px;
+    text-decoration: none;
+}
+caption{
+    padding:  10px 0;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.pagination a:hover {
+    background-color: #cccccc;
+}
+@media screen and (max-width:768px) {
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 2px;
+        font-size: 8px;
+        color: green;
+    }
+}
+@media screen and (max-width: 600px) {
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        padding: 2px;
+        font-size: 8px;
+        color: red;
+    }
+}
